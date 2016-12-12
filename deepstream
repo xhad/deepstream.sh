@@ -1,0 +1,50 @@
+#!/bin/bash
+#
+#       /etc/rc.d/init.d/deepstream
+# deepstream      This shell script takes care of starting and stopping
+#
+#
+# Author: Chad Lynch 
+# This e-mail address is being protected from spambots. You need JavaScript enabled to view it
+ 
+#
+# chkconfig: 2345 13 87
+# description: Deepstream systemctl \
+
+# Source function library.
+# . /etc/init.d/functions
+
+start() {
+        echo -n "Starting Deepstream Server... "
+        echo 
+        daemon deepstream
+        return 0
+}
+stop() {
+       echo -n "Shutting down Deepstream... "
+        echo
+        deepstream stop
+        echo
+        return 0
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status ns-slapd
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage:  {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+exit $?
